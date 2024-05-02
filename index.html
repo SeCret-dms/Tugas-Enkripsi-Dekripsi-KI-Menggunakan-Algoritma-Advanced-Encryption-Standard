@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TUGAS ENKRIPSI - DEKRIPSI</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Enkripsi-Dekripsi</h1>
+        <h1>Algoritma Advanced Encryption Standard</h1>
+        <div class="input-container">
+            <label for="plaintext">Plaintext:</label>
+            <input type="text" id="plaintext" placeholder="Masukkan teks">
+        </div>
+
+        <div class="input-container">
+            <label for="key">Kunci:</label>
+            <input type="text" id="key" placeholder="Masukkan kunci">
+        </div>
+
+        <div class="button-container">
+            <button onclick="enkripsi()">Enkripsi</button>
+            <button onclick="dekripsi()">Dekripsi</button>
+        </div>
+
+        <div class="output-container">
+            <label for="ciphertext">Hasil:</label>
+            <textarea id="ciphertext" readonly></textarea>
+        </div>
+    </div>
+
+    <script>
+        function enkripsi() {
+            var plaintext = document.getElementById("plaintext").value;
+            var key = document.getElementById("key").value;
+
+            var ciphertext = CryptoJS.AES.encrypt(plaintext, key).toString();
+            document.getElementById("ciphertext").value = ciphertext;
+        }
+
+        function dekripsi() {
+            var ciphertext = document.getElementById("ciphertext").value;
+            var key = document.getElementById("key").value;
+
+            var bytes = CryptoJS.AES.decrypt(ciphertext, key);
+            var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+            document.getElementById("plaintext").value = plaintext;
+        }
+    </script>
+</body>
+</html>
